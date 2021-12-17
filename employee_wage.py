@@ -7,7 +7,13 @@ class EmployeeWage:
     FULL_TIME = 8
     PART_TIME = 4
 
-    def employee_monthly_wage(self, company, emp_rate_per_hour, working_day, working_hours):
+    def __init__(self, company, emp_rate_per_hour, working_day, working_hours):
+        self.company = company
+        self.emp_rate_per_hour = emp_rate_per_hour
+        self.working_day = working_day
+        self.working_hours = working_hours
+
+    def employee_monthly_wage(self):
         """
             desc: calculating monthly wage of employee
             return: monthly wage
@@ -15,7 +21,7 @@ class EmployeeWage:
         working_days = 0
         total_emp_hour = 0
 
-        while working_days < working_day and total_emp_hour <= working_hours:
+        while working_days < self.working_day and total_emp_hour <= self.working_hours:
             working_days += 1
             emp_check = random.randrange(0, 3)
 
@@ -29,8 +35,8 @@ class EmployeeWage:
                 break
 
         # calculating monthly wage of employee0
-        emp_wage = self.calculate_emp_wage(emp_rate_per_hour, total_emp_hour)
-        print(f"Monthly Wage of a Employee in a {company} is : {emp_wage}")
+        emp_wage = self.calculate_emp_wage(self.emp_rate_per_hour, total_emp_hour)
+        print(f"Monthly Wage of a Employee in a {self.company} is : {emp_wage}")
 
     def calculate_emp_hours(self, emp_check):
         """
@@ -61,9 +67,14 @@ if __name__ == '__main__':
         Calling the calculate_monthly_wage function in EmployeeWage class
         to calculate monthly wage of employee for multiple companies.
     """
-    emp_monthly_wage = EmployeeWage()
+    tata = EmployeeWage("Tata", 20, 20, 100)
+    tata.employee_monthly_wage()
 
-    emp_monthly_wage.employee_monthly_wage("Tata", 20, 20, 100)
-    emp_monthly_wage.employee_monthly_wage("LTI", 30, 24, 150)
-    emp_monthly_wage.employee_monthly_wage("Accenture", 25, 22, 130)
-    emp_monthly_wage.employee_monthly_wage("JIO", 40, 28, 160)
+    lti = EmployeeWage("LTI", 30, 24, 150)
+    lti.employee_monthly_wage()
+
+    accenture = EmployeeWage("Accenture", 25, 22, 130)
+    accenture.employee_monthly_wage()
+
+    jio = EmployeeWage("JIO", 40, 28, 160)
+    jio.employee_monthly_wage()
