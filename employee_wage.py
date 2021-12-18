@@ -20,6 +20,7 @@ class EmployeeWage:
         """
         working_days = 0
         total_emp_hour = 0
+        emp_daily_wage = []
 
         while working_days < self.working_day and total_emp_hour <= self.working_hours:
             working_days += 1
@@ -33,11 +34,12 @@ class EmployeeWage:
             if total_emp_hour > 100:
                 total_emp_hour -= emp_hour
                 break
+            emp_daily_wage.append(self.emp_rate_per_hour * emp_hour)
 
         # calculating monthly wage of employee0
         emp_wage = self.calculate_emp_wage(self.emp_rate_per_hour, total_emp_hour)
-        print(f"Monthly Wage of a Employee in a {self.company} is : {emp_wage}")
-        return self.company, emp_wage
+        print(f"Monthly Wage And Daily Wage List of a Employee in a {self.company} is : {emp_wage} and {emp_daily_wage}")
+        return self.company, emp_wage, emp_daily_wage
 
     def calculate_emp_hours(self, emp_check):
         """
@@ -82,5 +84,6 @@ if __name__ == '__main__':
     jio = EmployeeWage("JIO", 40, 28, 160)
     company_employee_wage_list.append(jio.employee_monthly_wage())
 
+    print("(Company Name, Monthly Wage, Daily Wage List")
     for company_info in company_employee_wage_list:
         print(company_info)
