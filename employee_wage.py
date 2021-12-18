@@ -87,3 +87,20 @@ if __name__ == '__main__':
     print("(Company Name, Monthly Wage, Daily Wage List")
     for company_info in company_employee_wage_list:
         print(company_info)
+
+
+    def get_total_wage_by_company():
+        """
+            desc: retrieve the total wage for a particular company from the list
+            return: total wage
+        """
+        company_name = input("Enter the company name : ")
+        for company in company_employee_wage_list:
+            if company_name == company[0]:
+                print("Monthly salary : " + str(company[1]))
+                break
+            else:
+                print("Company is not there in the list.")
+                break
+
+    get_total_wage_by_company()
