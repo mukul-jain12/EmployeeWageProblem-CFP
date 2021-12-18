@@ -95,12 +95,13 @@ if __name__ == '__main__':
             return: total wage
         """
         company_name = input("Enter the company name : ")
+        flag = False
         for company in company_employee_wage_list:
             if company_name == company[0]:
                 print("Monthly salary : " + str(company[1]))
+                flag = True
                 break
-            else:
-                print("Company is not there in the list.")
-                break
+        if flag == False:
+            print("Company is not there in the list.")
 
     get_total_wage_by_company()
