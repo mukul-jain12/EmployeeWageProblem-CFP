@@ -37,6 +37,7 @@ class EmployeeWage:
         # calculating monthly wage of employee0
         emp_wage = self.calculate_emp_wage(self.emp_rate_per_hour, total_emp_hour)
         print(f"Monthly Wage of a Employee in a {self.company} is : {emp_wage}")
+        return self.company, emp_wage
 
     def calculate_emp_hours(self, emp_check):
         """
@@ -61,20 +62,25 @@ class EmployeeWage:
         employee_wage = rate_per_hour * total_hour
         return employee_wage
 
-
 if __name__ == '__main__':
     """
         Calling the calculate_monthly_wage function in EmployeeWage class
         to calculate monthly wage of employee for multiple companies.
     """
+
+    company_employee_wage_list = []
+
     tata = EmployeeWage("Tata", 20, 20, 100)
-    tata.employee_monthly_wage()
+    company_employee_wage_list.append(tata.employee_monthly_wage())
 
     lti = EmployeeWage("LTI", 30, 24, 150)
-    lti.employee_monthly_wage()
+    company_employee_wage_list.append(lti.employee_monthly_wage())
 
     accenture = EmployeeWage("Accenture", 25, 22, 130)
-    accenture.employee_monthly_wage()
+    company_employee_wage_list.append(accenture.employee_monthly_wage())
 
     jio = EmployeeWage("JIO", 40, 28, 160)
-    jio.employee_monthly_wage()
+    company_employee_wage_list.append(jio.employee_monthly_wage())
+
+    for company_info in company_employee_wage_list:
+        print(company_info)
