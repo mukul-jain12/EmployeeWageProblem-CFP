@@ -76,7 +76,7 @@ class EmployeeWage:
         employee_wage = rate_per_hour * total_hour
         return employee_wage
 
-    def __employee_monthly_wage(self, __company_employee_wage_list):
+    def __employee_monthly_wage(self, company_wage_list):
         """
             desc: calculating monthly wage of employee
             return: monthly wage
@@ -85,7 +85,7 @@ class EmployeeWage:
         total_emp_hour = 0
         emp_daily_wage = []
 
-        while working_days < __company_employee_wage_list.working_day and total_emp_hour <= __company_employee_wage_list.working_hours:
+        while working_days < company_wage_list.working_day and total_emp_hour <= company_wage_list.working_hours:
             working_days += 1
             emp_check = random.randrange(0, 3)
 
@@ -97,12 +97,27 @@ class EmployeeWage:
             if total_emp_hour > 100:
                 total_emp_hour -= emp_hour
                 break
-            emp_daily_wage.append(__company_employee_wage_list.emp_rate_per_hour * emp_hour)
+            emp_daily_wage.append(company_wage_list.emp_rate_per_hour * emp_hour)
 
         # calculating monthly wage of employee0
-        emp_wage = self.calculate_emp_wage(__company_employee_wage_list.emp_rate_per_hour, total_emp_hour)
-        print(f"Monthly Wage And Daily Wage List of a Employee in a {__company_employee_wage_list.company} is : {emp_wage} and {emp_daily_wage}")
-        return self.company, emp_wage, emp_daily_wage
+        emp_wage = self.calculate_emp_wage(company_wage_list.emp_rate_per_hour, total_emp_hour)
+        print(f"Monthly Wage And Daily Wage List of a Employee in a {company_wage_list.company} is : {emp_wage} and {emp_daily_wage}")
+        return company_wage_list.company, emp_wage, emp_daily_wage
+
+    def get_total_wage_by_company(self):
+        """
+            desc: retrieve the total wage for a particular company from the list
+            return: total wage
+        """
+        company_name = input("Enter the company name : ")
+        flag = False
+        for company in self.__company_employee_wage_list:
+            if company_name.lower() == company.company.lower():
+                print("Monthly salary : " + str(company.total_emp_wage))
+                flag = True
+                break
+        if flag == False:
+            print("Company is not there in the list.")
 
 
 if __name__ == '__main__':
@@ -119,3 +134,4 @@ if __name__ == '__main__':
 
     emp_monthly_wage.compute_wage()
 
+    emp_monthly_wage.get_total_wage_by_company()
